@@ -438,7 +438,6 @@ function M.setup_autocommands()
         "SessionWritePost",
         { group = group, callback = _write_sessionx_file }
     )
-
 end
 
 --- Add command(s) for interacting with the terminals.
