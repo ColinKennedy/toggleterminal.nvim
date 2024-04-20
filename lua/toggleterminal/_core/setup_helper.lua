@@ -271,10 +271,7 @@ local function _serialize_terminals()
     local output = {}
 
     table.insert(output, "lua << EOF")
-    table.insert(
-        output,
-        'local toggle_terminal = require("my_custom.utilities.toggle_terminal")'
-    )
+    table.insert(output, 'local toggle_terminal = require("toggleterminal")')
 
     for _, line in ipairs(contents) do
         table.insert(output, line)
