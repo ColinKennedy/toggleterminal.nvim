@@ -215,8 +215,6 @@ local function _handle_term_leave(buffer)
         mode = _Mode.insert
     end
 
-    print('DEBUGPRINT[5]: toggle_terminal.lua:211: mode=' .. vim.inspect(mode))
-
     local terminal = _BUFFER_TO_TERMINAL[buffer]
 
     if mode then
