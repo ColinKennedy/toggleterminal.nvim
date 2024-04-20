@@ -66,11 +66,9 @@ end
 local function _get_all_toggle_terminals()
     local output = {}
 
-    for tab = 1, vim.fn.tabpagenr("$") do
-        for _, buffer in ipairs(vim.fn.tabpagebuflist(tab)) do
-            if _is_toggle_terminal(buffer) then
-                table.insert(output, buffer)
-            end
+    for _, buffer in ipairs(vim.api.nvim_list_bufs()) do
+        if _is_toggle_terminal(buffer) then
+            table.insert(output, buffer)
         end
     end
 
@@ -104,9 +102,11 @@ end
 local function _get_buffer_windows(buffer)
     local output = {}
 
-    for _, window in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
-        if vim.api.nvim_win_get_buf(window) == buffer then
-            table.insert(output, window)
+    for tab = 1, vim.fn.tabpagenr('$') do
+        for _, window in ipairs(vim.api.nvim_tabpage_list_wins(tab)) do
+            if vim.api.nvim_win_get_buf(window) == buffer then
+                table.insert(output, window)
+            end
         end
     end
 
@@ -316,7 +316,7 @@ end
 local function _write_sessionx_file()
     local session = vim.v.this_session
     local directory = vim.fn.fnamemodify(session, ":h")
-    local sessionx = vim.fs.joinpath(directory, "Sessionx.vim")
+    local sessionx = vim.fs.joinpath(directory, "SessionxToggleTerminal.vim")
 
     local data = _serialize_terminals()
 
