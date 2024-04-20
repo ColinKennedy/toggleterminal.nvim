@@ -264,8 +264,8 @@ local function _serialize_terminals()
         )
     end
 
-    if not contents then
-        return nil
+    if vim.tbl_isempty(contents) then
+      return nil
     end
 
     local output = {}
