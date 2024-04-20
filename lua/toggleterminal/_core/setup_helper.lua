@@ -321,10 +321,9 @@ local function _write_sessionx_file()
     local data = _serialize_terminals()
 
     if not data then
-        vim.notify(
-            "Unable to get terminal data. Cannot write Session file.",
-            vim.log.levels.ERROR
-        )
+        if vim.fn.filereadable(sessionx) == 1 then
+            vim.fn.delete(sessionx)
+        end
 
         return
     end
