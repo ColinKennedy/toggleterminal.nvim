@@ -149,6 +149,7 @@ end
 --- @param buffer number A 0-or-more index pointing to some Vim data.
 ---
 local function _initialize_terminal_buffer(buffer)
+    vim.bo[buffer].buflisted = false
     vim.bo[buffer].bufhidden = "hide"
     vim.b[buffer]._toggle_terminal_buffer = true
 end
