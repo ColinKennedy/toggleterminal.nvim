@@ -365,7 +365,6 @@ function M.initialize_terminal_from_session(terminal)
 end
 
 --- Add Neovim `toggleterminal`-related autocommands.
---- -- TODO: Finish the docstring
 function M.setup_autocommands()
     local group = vim.api.nvim_create_augroup("ToggleTerminalCommands", { clear = true })
     local toggleterm_pattern = { "term://*::toggleterminal::*" }
@@ -414,6 +413,19 @@ function M.setup_autocommands()
     --         end,
     --     }
     -- )
+
+    vim.api.nvim_create_autocmd(
+        "TermClose",
+        {
+            pattern = toggleterm_pattern,
+            group = group,
+            callback = function()
+                local buffer = vim.fn.bufnr()
+
+                vim.cmd.bdelete(buffer)
+            end,
+        }
+    )
 
     vim.api.nvim_create_autocmd(
         "TermOpen",
