@@ -6,8 +6,6 @@
 --- @module 'toggleterminal._core.setup_helper'
 ---
 
--- TODO: Add Background shade color
-
 --- @class ToggleTerminal
 ---     An simplified description of a terminal that can be shown / hidden.
 --- @field buffer number
@@ -196,9 +194,6 @@ local function _handle_term_enter(buffer)
         if _STARTING_MODE == _Mode.insert then
             vim.cmd.startinsert()
         end
-    elseif mode == _Mode.normal then
-        -- TODO: Double-check this part
-        return
     end
 end
 
