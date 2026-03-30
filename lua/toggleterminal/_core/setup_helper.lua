@@ -23,7 +23,7 @@ local _BUFFER_TO_TERMINAL = {}
 local _COMMAND = os.getenv("NEOVIM_PREFERRED_TERMINAL_COMMAND")
 
 if not _COMMAND then
-    if vim.fn.has("win32") then
+    if vim.fn.has("win32") == 1 then
         if vim.fn.executable("pwsh") == 1 then
             _COMMAND = "pwsh"
         elseif vim.fn.executable("cmd") == 1 then
